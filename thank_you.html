@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Yeh line 5 second baad page ko index.html par bhej degi -->
+    <meta http-equiv="refresh" content="5;url=index.html">
+    <title>Thank You - MediCare+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-blue-600 flex items-center justify-center h-screen">
+
+    <div class="text-center bg-white p-12 rounded-2xl shadow-2xl max-w-lg mx-4">
+        <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-green-100 mb-6">
+            <svg class="h-12 w-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+        </div>
+        <h1 class="text-3xl font-extrabold text-gray-800">Dhanyavaad!</h1>
+        <p class="text-gray-600 mt-4 text-lg">Aapka appointment request safaltapurvak bhej diya gaya hai. Hamari team aapse jald hi sampark karegi.</p>
+        <div class="mt-8 text-gray-500">
+            Aap <span id="countdown" class="font-bold">5</span> second mein mukhya page par wapas bhej diye jayenge.
+        </div>
+    </div>
+
+    <script>
+        let seconds = 5;
+        const countdownElement = document.getElementById('countdown');
+        const interval = setInterval(() => {
+            seconds--;
+            countdownElement.textContent = seconds;
+            if (seconds <= 0) {
+                clearInterval(interval);
+                // Redirect agar meta tag kaam na kare (fallback)
+                window.location.href = 'index.html';
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>

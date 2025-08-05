@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - MediCare+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto p-4 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-blue-600">Admin Dashboard</h1>
+            <button id="refresh-btn" class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+                Refresh List
+            </button>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Appointment Requests</h2>
+            <div id="status-message" class="mb-4 text-center font-medium"></div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="p-4 font-semibold">Name</th>
+                            <th class="p-4 font-semibold">Phone</th>
+                            <th class="p-4 font-semibold">Date</th>
+                            <th class="p-4 font-semibold">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointments-table-body">
+                        <!-- Data will be loaded here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+             <div id="loading-state" class="text-center py-8">
+                <p class="text-gray-500">Loading appointments...</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const tableBody = document.getElementById('appointments-table-body');
+        const loadingState = document.getElementById('loading-state');
+        const refreshBtn = document.getElementById('refresh-btn');
+        const statusMessage = document.getElementById('status-message');
+        const API_URL = 'http://127.0.0.1:5000';
+
+        // Function to fetch and display appointments
+        async function fetchAppointments() {
+            loadingState.style.display = 'block';
+            tableBody.innerHTML = ''; // Clear existing table
+            try {
+                const response = await fetch(`${API_URL}/appointments`);
+                if (!response.ok) throw new Error('Failed to fetch data.');
+                
+                const appointments = await response.json();
+
+                if (appointments.length === 0) {
+                    loadingState.innerHTML = '<p class="text-gray-500">No appointment requests found.</p>';
+                    return;
+                }
+
+                appointments.forEach(app => {
+                    const row = document.createElement('tr');
+                    row.className = 'border-b';
+                    
+                    const statusColor = app.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' : 
+                                      app.status === 'Confirmed' ? 'bg-green-100 text-green-800' : 
+                                      'bg-red-100 text-red-800';
+
+                    row.innerHTML = `
+                        <td class="p-4">${app.name}</td>
+                        <td class="p-4">${app.phone}</td>
+                        <td class="p-4">${app.date}</td>
+                        <td class="p-4">
+                            <select data-id="${app._id}" class="status-dropdown p-2 rounded-lg border ${statusColor}">
+                                <option value="Pending" ${app.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                                <option value="Confirmed" ${app.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+                                <option value="Cancelled" ${app.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                            </select>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+
+            } catch (error) {
+                loadingState.innerHTML = `<p class="text-red-500">Error: ${error.message}</p>`;
+                console.error("Fetch error:", error);
+            } finally {
+                loadingState.style.display = 'none';
+            }
+        }
+
+        // Function to update status
+        async function updateAppointmentStatus(id, status) {
+            statusMessage.textContent = 'Updating...';
+            statusMessage.className = 'mb-4 text-center font-medium text-blue-600';
+            try {
+                const response = await fetch(`${API_URL}/update_status`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id, status: status })
+                });
+
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.error);
+                
+                statusMessage.textContent = result.message;
+                statusMessage.className = 'mb-4 text-center font-medium text-green-600';
+                fetchAppointments(); // Refresh the list after update
+
+            } catch (error) {
+                statusMessage.textContent = `Error: ${error.message}`;
+                statusMessage.className = 'mb-4 text-center font-medium text-red-600';
+                console.error("Update error:", error);
+            }
+        }
+
+        // Event Listeners
+        refreshBtn.addEventListener('click', fetchAppointments);
+
+        tableBody.addEventListener('change', (e) => {
+            if (e.target.classList.contains('status-dropdown')) {
+                const appointmentId = e.target.dataset.id;
+                const newStatus = e.target.value;
+                updateAppointmentStatus(appointmentId, newStatus);
+            }
+        });
+
+        // Initial fetch
+        document.addEventListener('DOMContentLoaded', fetchAppointments);
+    </script>
+</body>
+</html>
