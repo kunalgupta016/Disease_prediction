@@ -156,6 +156,7 @@ import os
 def home():
     return render_template('index.html')
 
+
 if __name__ == '__main__':
     train_model()
     port = int(os.environ.get('PORT', 5000))
