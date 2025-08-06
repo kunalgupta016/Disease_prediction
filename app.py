@@ -8,7 +8,7 @@ from flask_cors import CORS
 import joblib 
 from pymongo import MongoClient
 from bson import ObjectId # MongoDB Object ID ke liye zaroori
-
+from flask import render_template
 # --- Initialize Flask App ---
 app = Flask(__name__)
 CORS(app) # Enable Cross-Origin Resource Sharing
@@ -150,6 +150,12 @@ def update_status():
 import os
 
 # --- Main Application Execution ---
+
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
 if __name__ == '__main__':
     train_model()
     port = int(os.environ.get('PORT', 5000))
