@@ -7,11 +7,11 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import joblib 
 from pymongo import MongoClient
-from bson import ObjectId # MongoDB Object ID ke liye zaroori
+from bson import ObjectId 
 from flask import render_template
 # --- Initialize Flask App ---
 app = Flask(__name__)
-CORS(app) # Enable Cross-Origin Resource Sharing
+CORS(app) 
 
 # --- MongoDB Setup ---
 # APNI MONGODB ATLAS CONNECTION STRING YAHAAN PASTE KAREIN
@@ -155,6 +155,11 @@ import os
 @app.route('/')
 def home():
     return render_template('index.html')
+
+
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
 
 
 if __name__ == '__main__':
