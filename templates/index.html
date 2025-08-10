@@ -10,67 +10,99 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Yah line scrollbar ko hatane ke liye jodi gayi hai */
         }
-        .tag { transition: all 0.2s ease-in-out; }
+        .tag {
+            transition: all 0.2s ease-in-out;
+        }
         .hero-bg {
             background-image: linear-gradient(to right, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8)), url('https://placehold.co/1920x1080/e0e7ff/3730a3?text=Modern+Clinic');
-            background-size: cover; background-position: center;
+            background-size: cover;
+            background-position: center;
         }
-        .faq-question { cursor: pointer; }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .faq-question {
+            cursor: pointer;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-<!-- Header -->
-<header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
-    <div class="container mx-auto flex justify-between items-center p-4">
-        <a href="#" class="text-3xl font-extrabold text-blue-600">MediCare+</a>
-        <nav class="hidden md:flex space-x-8 items-center">
-            <a href="#home" class="text-gray-600 hover:text-blue-600">Home</a>
-            <a href="#services" class="text-gray-600 hover:text-blue-600">Services</a>
-            <a href="#disease-finder" class="text-gray-600 hover:text-blue-600">Disease Finder</a>
-            <a href="#doctors" class="text-gray-600 hover:text-blue-600">Doctors</a>
-            <a href="#testimonials" class="text-gray-600 hover:text-blue-600">Testimonials</a>
-            <a href="#contact" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700">Book Appointment</a>
-        </nav>
-        <button id="mobile-menu-button" class="md:hidden text-gray-700">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4 6h16M4 12h16m-7 6h7"/>
-            </svg>
-        </button>
-    </div>
-    <div id="mobile-menu" class="hidden p-4 bg-white md:hidden">
-        <a href="#home" class="block py-2">Home</a>
-        <a href="#services" class="block py-2">Services</a>
-        <a href="#disease-finder" class="block py-2">Disease Finder</a>
-        <a href="#doctors" class="block py-2">Doctors</a>
-        <a href="#testimonials" class="block py-2">Testimonials</a>
-        <a href="#contact" class="block mt-2 bg-blue-600 text-white px-5 py-2 rounded-full">Book Appointment</a>
-    </div>
-</header>
+    <!-- Header and Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <a href="#" class="text-3xl font-extrabold text-blue-600">MediCare+</a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="text-gray-600 hover:text-blue-600 font-medium transition">Home</a>
+                <a href="#services" class="text-gray-600 hover:text-blue-600 font-medium transition">Services</a>
+                <a href="#disease-finder" class="text-gray-600 hover:text-blue-600 font-medium transition">Disease Finder</a>
+                <a href="#doctors" class="text-gray-600 hover:text-blue-600 font-medium transition">Doctors</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-blue-600 font-medium transition">Testimonials</a>
+                <a href="#contact" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 font-semibold shadow transition">Book Appointment</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden p-4 bg-white">
+            <a href="#home" class="block py-2 text-gray-600 hover:text-blue-600">Home</a>
+            <a href="#services" class="block py-2 text-gray-600 hover:text-blue-600">Services</a>
+            <a href="#disease-finder" class="block py-2 text-gray-600 hover:text-blue-600">Disease Finder</a>
+            <a href="#doctors" class="block py-2 text-gray-600 hover:text-blue-600">Doctors</a>
+            <a href="#testimonials" class="block py-2 text-gray-600 hover:text-blue-600">Testimonials</a>
+            <a href="#contact" class="block mt-2 text-center bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700">Book Appointment</a>
+        </div>
+    </header>
 
-<!-- Hero -->
-<section id="home" class="hero-bg py-20 md:py-32">
-    <div class="container mx-auto text-center px-4">
-        <h1 class="text-4xl md:text-6xl font-extrabold">Aapke Swasthya Ki Dekhbhal,<br> Hamari Pehli Prathmikta</h1>
-        <p class="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">MediCare+ mein hum aapko behtareen medical suvidhayein pradan karte hain.</p>
-        <a href="#disease-finder" class="mt-8 inline-block bg-green-500 text-white px-8 py-4 rounded-full">Apne Lakshan Check Karein</a>
-    </div>
-</section>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-bg py-20 md:py-32">
+            <div class="container mx-auto text-center px-4">
+                <h1 data-aos="fade-up" class="text-4xl md:text-6xl font-extrabold text-gray-800 leading-tight">Aapke Swasthya Ki Dekhbhal,<br> Hamari Pehli Prathmikta</h1>
+                <p data-aos="fade-up" data-aos-delay="200" class="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">MediCare+ mein hum aapko behtareen medical suvidhayein pradan karte hain. Hamare anubhavi doctors aur modern technology aapke swasthya ka pura khayal rakhte hain.</p>
+                <a data-aos="fade-up" data-aos-delay="400" href="#disease-finder" class="mt-8 inline-block bg-green-500 text-white font-bold px-8 py-4 rounded-full text-lg hover:bg-green-600 transition shadow-lg">Apne Lakshan Check Karein</a>
+            </div>
+        </section>
 
-<!-- Services -->
-<section id="services" class="py-20 bg-white">
-    <div class="container mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold mb-12">Hamari Sevayein</h2>
-        <!-- Services grid omitted for brevity -->
-    </div>
-</section>
+        <!-- Services Section -->
+        <section id="services" class="py-20 bg-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 data-aos="fade-up" class="text-4xl font-bold text-gray-800 mb-12">Hamari Sevayein</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div data-aos="fade-up" data-aos-delay="100" class="bg-white p-8 rounded-2xl shadow-lg text-center border-t-4 border-blue-500">
+                        <div class="bg-blue-100 text-blue-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">24/7 Emergency</h3>
+                        <p class="text-gray-600">Aapki sehat ke liye hamari emergency services hamesha uplabdh hain.</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200" class="bg-white p-8 rounded-2xl shadow-lg text-center border-t-4 border-green-500">
+                         <div class="bg-green-100 text-green-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5z" /><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Expert Doctors</h3>
+                        <p class="text-gray-600">Alag-alag fields ke anubhavi aur vishisht doctors ki team.</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="300" class="bg-white p-8 rounded-2xl shadow-lg text-center border-t-4 border-purple-500">
+                         <div class="bg-purple-100 text-purple-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Modern Labs</h3>
+                        <p class="text-gray-600">Sahi jaanch aur report ke liye high-tech medical labs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Disease Finder -->
-<section id="disease-finder" class="py-20 bg-gray-100">
+        <!-- Disease Finder Section -->
+        <section id="disease-finder" class="py-20 bg-gray-100">
     <div class="container mx-auto px-4">
         <header class="text-center mb-8">
             <h2 class="text-4xl font-bold text-blue-600">Disease Finder</h2>
@@ -96,27 +128,173 @@
         <section id="results" class="mt-8 max-w-3xl mx-auto hidden"></section>
     </div>
 </section>
+        
+        <!-- Our Doctors Section -->
+        <section id="doctors" class="py-20 bg-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 data-aos="fade-up" class="text-4xl font-bold text-gray-800 mb-12">Hamare Anubhavi Doctors</h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div data-aos="fade-up" data-aos-delay="100" class="bg-gray-50 p-6 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <img src="https://placehold.co/300x300/3b82f6/ffffff?text=Dr.+Verma" alt="Dr. R. Verma" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white shadow-lg">
+                        <h3 class="text-xl font-bold">Dr. R. Verma</h3>
+                        <p class="text-blue-600 font-medium">Cardiologist</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200" class="bg-gray-50 p-6 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <img src="https://placehold.co/300x300/10b981/ffffff?text=Dr.+Sharma" alt="Dr. Priya Sharma" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white shadow-lg">
+                        <h3 class="text-xl font-bold">Dr. Priya Sharma</h3>
+                        <p class="text-blue-600 font-medium">Neurologist</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="300" class="bg-gray-50 p-6 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <img src="https://placehold.co/300x300/8b5cf6/ffffff?text=Dr.+Singh" alt="Dr. A. Singh" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white shadow-lg">
+                        <h3 class="text-xl font-bold">Dr. A. Singh</h3>
+                        <p class="text-blue-600 font-medium">Pediatrician</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="400" class="bg-gray-50 p-6 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <img src="https://placehold.co/300x300/ef4444/ffffff?text=Dr.+Gupta" alt="Dr. S. Gupta" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white shadow-lg">
+                        <h3 class="text-xl font-bold">Dr. S. Gupta</h3>
+                        <p class="text-blue-600 font-medium">Dermatologist</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Doctors / Testimonials / FAQ omitted for brevity -->
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-4 text-center">
+                <h2 data-aos="fade-up" class="text-4xl font-bold text-gray-800 mb-12">Mareezo Ke Anubhav</h2>
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div data-aos="fade-up" data-aos-delay="100" class="bg-white p-8 rounded-2xl shadow-lg text-left">
+                        <p class="text-gray-600 mb-4">"MediCare+ ka staff bahut sahyogi hai. Dr. Verma ne mera ilaaj bahut acche se kiya. Main yahan ki services se bahut khush hoon."</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/100x100/3b82f6/ffffff?text=S.K" alt="Suresh Kumar" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-bold">Suresh Kumar</h4>
+                                <p class="text-sm text-gray-500">Jaipur</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200" class="bg-white p-8 rounded-2xl shadow-lg text-left">
+                        <p class="text-gray-600 mb-4">"Meri beti ka ilaaj Dr. Singh ne kiya. Woh bachhon ke saath bahut acche hain. Hospital bahut saaf-suthra hai. Dhanyavaad MediCare+."</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/100x100/10b981/ffffff?text=A.J" alt="Anita Jain" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-bold">Anita Jain</h4>
+                                <p class="text-sm text-gray-500">Ajmer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20 bg-white">
+            <div class="container mx-auto px-4 max-w-3xl">
+                <h2 data-aos="fade-up" class="text-4xl font-bold text-gray-800 mb-12 text-center">Aksar Puche Jaane Wale Sawaal (FAQ)</h2>
+                <div class="space-y-4" data-aos="fade-up">
+                    <div class="faq-item bg-gray-50 rounded-lg border">
+                        <div class="faq-question flex justify-between items-center p-4">
+                            <h3 class="font-semibold text-lg">Appointment kaise book karein?</h3>
+                            <span class="transform transition-transform duration-300">&#9660;</span>
+                        </div>
+                        <div class="faq-answer px-4 pb-4 text-gray-600">
+                            <p>Aap hamari website par diye gaye 'Book Appointment' form se, ya seedhe hospital ke number (+91) 9680848416 par call karke appointment book kar sakte hain.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item bg-gray-50 rounded-lg border">
+                        <div class="faq-question flex justify-between items-center p-4">
+                            <h3 class="font-semibold text-lg">Kya yahan health insurance chalta hai?</h3>
+                            <span class="transform transition-transform duration-300">&#9660;</span>
+                        </div>
+                        <div class="faq-answer px-4 pb-4 text-gray-600">
+                            <p>Haan, hum sabhi pramukh health insurance providers ko accept karte hain. Adhik jaankari ke liye कृपया hamare reception par sampark karein.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item bg-gray-50 rounded-lg border">
+                        <div class="faq-question flex justify-between items-center p-4">
+                            <h3 class="font-semibold text-lg">Emergency ke liye kya suvidhayein hain?</h3>
+                            <span class="transform transition-transform duration-300">&#9660;</span>
+                        </div>
+                        <div class="faq-answer px-4 pb-4 text-gray-600">
+                            <p>Hamare paas 24/7 emergency aur trauma center hai, jismein anubhavi doctors aur advanced medical equipment hamesha uplabdh rehte hain.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Footer -->
-<footer id="contact" class="bg-gray-800 text-white py-20">
-    <div class="container mx-auto">
-        <!-- Contact form omitted for brevity -->
-    </div>
-</footer>
+    </main>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init({ duration:800, once:true });
+    <!-- Footer / Contact Form -->
+    <footer id="contact" class="bg-gray-800 text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h3 class="text-4xl font-bold">Appointment Book Karein</h3>
+                    <p class="mt-2 text-gray-400">Neeche diye gaye form ko bharein aur hamari team aapse jald hi sampark karegi.</p>
+                    <div class="mt-6">
+                        <p class="text-lg font-semibold">Address:</p>
+                        <p class="text-gray-400">7/11, neb housing board, Alwar, Rajasthan, 301001</p>
+                        <p class="mt-4 text-lg font-semibold">Phone:</p>
+                        <p class="text-gray-400">(+91) 9680848416</p>
+                    </div>
+                </div>
+                <div data-aos="fade-left" class="bg-gray-700 p-8 rounded-2xl">
+                    <form id="appointment-form" method="POST">
+                        <div class="mb-4">
+                            <label for="name" class="block mb-2">Aapka Naam</label>
+                            <input type="text" id="name" name="name" class="w-full bg-gray-800 rounded border border-gray-600 p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                         <div class="mb-4">
+                            <label for="phone" class="block mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="w-full bg-gray-800 rounded border border-gray-600 p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                         <div class="mb-4">
+                            <label for="date" class="block mb-2">Appointment Date</label>
+                            <input type="date" id="date" name="date" class="w-full bg-gray-800 rounded border border-gray-600 p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <button type="submit" id="submit-appointment-btn" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition">Submit Request</button>
+                    </form>
+                    <div id="form-status" class="mt-4 text-center font-medium"></div>
+                </div>
+            </div>
+            <div class="mt-12 text-center text-sm text-gray-500 border-t border-gray-700 pt-6">
+                &copy; 2025 MediCare+. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
 
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-button').addEventListener('click', () => {
-        document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
 
-    // Disease Finder
-    const API_URL = 'https://medicareplus-lw2v.onrender.com';
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // --- Initialize AOS (Animate on Scroll) ---
+        AOS.init({ duration: 800, once: true });
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // --- FAQ Accordion ---
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const answer = item.nextElementSibling;
+                const icon = item.querySelector('span');
+                
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null;
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                    icon.style.transform = 'rotate(180deg)';
+                } 
+            });
+        });
+
+        // --- Disease Finder Logic ---
+        const API_URL = 'https://medicareplus-lw2v.onrender.com';
     const symptomSelect = document.getElementById('symptom-select');
     const addSymptomBtn = document.getElementById('add-symptom-btn');
     const symptomTagsContainer = document.getElementById('symptom-tags');
@@ -212,6 +390,48 @@
     });
 
     document.addEventListener('DOMContentLoaded', fetchSymptoms);
-</script>
+
+
+        // --- Appointment Form Logic ---
+        const appointmentForm = document.getElementById('appointment-form');
+        const formStatus = document.getElementById('form-status');
+
+        appointmentForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Page reload hone se rokein
+            formStatus.textContent = 'Submitting...';
+            formStatus.classList.remove('text-green-500', 'text-red-500');
+
+            const formData = new FormData(appointmentForm);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch(`${API_URL}/book_appointment`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+                
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.error || 'Something went wrong');
+                }
+
+                window.location.href = 'thank_you.html';
+                formStatus.classList.add('text-green-500');
+                appointmentForm.reset(); // Form ko reset karein
+
+            } catch (error) {
+                formStatus.textContent = `Error: ${error.message}`;
+                formStatus.classList.add('text-red-500');
+            }
+        });
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchAllSymptoms();
+            updatePredictButtonState();
+        });
+    </script>
 </body>
 </html>
